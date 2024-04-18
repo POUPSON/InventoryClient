@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class StageManager {
 
+
     private static Stage stage;
 
     private static final Map<String, Map.Entry<Parent, Object>> viewControllerMap = new HashMap<>();
@@ -28,9 +29,9 @@ public class StageManager {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void navigate(String view) {
-        final var viewAndController = viewControllerMap.get(view);
+//Fonction qui permet de naviguer de page en page kan on clique sur le bouton
+    public static void navigate(String view) {
+        final var viewAndController = loadViewAndController(view);
         baseController.setContent(viewAndController.getKey());
     }
 
