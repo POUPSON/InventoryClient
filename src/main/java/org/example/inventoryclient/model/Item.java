@@ -5,10 +5,6 @@ import lombok.Data;
 @Data
 @Builder
 public class Item {
-
     private Integer quantityInStock, valueInStock  ;
-    private String name  ;
-
-
-
+    private String name;
 }

@@ -1,6 +1,8 @@
 module org.example.inventoryclient {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
     requires javafx.web;
     requires lombok;
     requires org.controlsfx.controls;

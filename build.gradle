@@ -43,8 +43,9 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
-   compileOnly("org.projectlombok:lombok:1.18.32")
-   annotationProcessor("org.projectlombok:lombok:1.18.32")
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.17.0')
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
