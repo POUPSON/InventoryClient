@@ -11,5 +11,7 @@ module org.example.inventoryclient {
     requires org.kordamp.ikonli.javafx;
 
     opens org.example.inventoryclient.controller to javafx.fxml;
+    opens org.example.inventoryclient.dto to com.fasterxml.jackson.databind;
+    opens org.example.inventoryclient.model to com.fasterxml.jackson.databind;
     exports org.example.inventoryclient;
 }

@@ -1,27 +1,13 @@
 package org.example.inventoryclient.controller;
 
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import org.controlsfx.control.action.Action;
 import org.example.inventoryclient.model.Item;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
+import org.example.inventoryclient.service.InventoryService;
 
 public class InventoryController {
 
@@ -46,6 +32,13 @@ public class InventoryController {
         collquantity.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getQuantityInStock()).asObject());
         collvalue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValueInStock()).asObject());
 
-
+        new Thread(() -> {
+            try {
+                final var result = InventoryService.getItems();
+                System.out.println(result);
+            } catch (Throwable e) {
+                e.printStackTrace(System.err);
+            }
+        }).start();
     }
 }

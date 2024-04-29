@@ -1,22 +1,12 @@
 package org.example.inventoryclient.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import org.example.inventoryclient.StageManager;
 
-import java.io.IOException;
-import java.util.concurrent.AbstractExecutorService;
-
 public class BaseController {
-
-
 
     @FXML
     private BorderPane root;
@@ -25,7 +15,10 @@ public class BaseController {
     private Button btnInventory;
 
     @FXML
-    private Button  btnSupplies;
+    private Button btnSupplies;
+
+    @FXML
+    private Button btnSales;
 
     //Asigner a chaque fxid de chaque bouton la fonction navigate ayant en parametre le
     // fichier.xml kils pourront ouvrir
@@ -35,7 +28,7 @@ public class BaseController {
             StageManager.navigate("inventory.fxml");
         });
         btnSupplies.setOnAction(event -> {
-                StageManager.navigate("supply.fxml");
+            StageManager.navigate("supply.fxml");
     });
 
     }

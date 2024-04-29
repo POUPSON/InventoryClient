@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-
-<TableView fx:id="Component" prefHeight="206.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inventoryclient.controller.InventoryController">
-      <columns>
-          <TableColumn fx:id="collproduct" minWidth="15.0" prefWidth="131.0" text="Product Name" />
-          <TableColumn fx:id="collquantity" prefWidth="145.0" text="Quantity In Stock" />
-          <TableColumn fx:id="collvalue" minWidth="0.0" prefWidth="131.0" text="Value In Stock " />
-          <TableColumn fx:id="collactions" prefWidth="192.0" text="Actions " />
-      </columns>
-
-
+<?import javafx.scene.control.*?>
+<TableView xmlns:fx="http://javafx.com/fxml/1" fx:id="Component" prefHeight="206.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/17"
+           fx:controller="org.example.inventoryclient.controller.InventoryController">
+    <columns>
+        <TableColumn fx:id="collproduct" minWidth="15.0" prefWidth="131.0" text="Product Name"/>
+        <TableColumn fx:id="collquantity" prefWidth="145.0" text="Quantity In Stock"/>
+        <TableColumn fx:id="collvalue" minWidth="0.0" prefWidth="131.0" text="Value In Stock "/>
+        <TableColumn fx:id="collactions" prefWidth="192.0" text="Actions "/>
+    </columns>
 
 
-
-
-
-
-    
-  </TableView>
+</TableView>
