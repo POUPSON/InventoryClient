@@ -1,5 +1,6 @@
 package org.example.inventoryclient;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,46 +8,56 @@ import javafx.stage.Stage;
 import org.example.inventoryclient.controller.BaseController;
 
 import java.io.IOException;
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class StageManager {
-
-
-    private static Stage stage;
 
     private static final Map<String, Map.Entry<Parent, Object>> viewControllerMap = new HashMap<>();
     private static BaseController baseController;
 
-    public static void initialize(Stage stage) throws IOException {
-        StageManager.stage = stage;
-
-        final var baseViewAndController = loadViewAndController("base_view.fxml");
-        Scene scene = new Scene(baseViewAndController.getKey());
-        baseController = (BaseController) baseViewAndController.getValue();
-        stage.setTitle("Inventory");
-        stage.setScene(scene);
-        stage.show();
+    public static void initialize(Stage stage) {
+        try {
+            final var baseViewAndController = loadViewAndController("base_view.fxml").orElseThrow();
+            Scene scene = new Scene(baseViewAndController.getKey());
+            baseController = (BaseController) baseViewAndController.getValue();
+            stage.setTitle("Inventory");
+            stage.setScene(scene);
+            stage.show();
+        } catch (NoSuchElementException ex) {
+            ex.printStackTrace(System.err);
+            System.exit(1);
+        }
     }
-//Fonction qui permet de naviguer de page en page kan on clique sur le bouton
+
     public static void navigate(String view) {
-        final var viewAndController = loadViewAndController(view);
-        baseController.setContent(viewAndController.getKey());
-    }
-
-    private static Map.Entry<Parent, Object> loadViewAndController(String view) {
-        return viewControllerMap.computeIfAbsent(view, s -> {
+        Platform.runLater(() -> {
             try {
-                var loader = new FXMLLoader(StageManager.class.getResource("/views/" + s));
-                var parent = (Parent) loader.load();
-                var c = loader.getController();
-
-                return new AbstractMap.SimpleEntry<Parent, Object>(parent, c);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+                final var viewAndController = loadViewAndController(view);
+                viewAndController.ifPresent(value -> baseController.setContent(value.getKey()));
+            } catch (Exception ex) {
+                ex.printStackTrace(System.err);
             }
         });
+    }
+
+    private static Optional<Map.Entry<Parent, Object>> loadViewAndController(String view) {
+        return Optional.of(viewControllerMap.computeIfAbsent(view, viewName -> {
+            try {
+                return loadView(viewName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }));
+    }
+
+    private static Map.Entry<Parent, Object> loadView(String viewName) throws IOException {
+        final var url = StageManager.class.getResource("/views/" + viewName);
+
+        var loader = new FXMLLoader(url);
+        var parent = (Parent) loader.load();
+        var controller = loader.getController();
+
+        return new AbstractMap.SimpleEntry<>(parent, controller);
     }
 
 }
