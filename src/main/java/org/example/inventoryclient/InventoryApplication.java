@@ -11,7 +11,7 @@ import java.util.Properties;
 public class InventoryApplication extends Application {
     @Override
     public void init() throws Exception {
-        try(var stream = InventoryApplication.class.getResourceAsStream(".env.properties")){
+        try(var stream = InventoryApplication.class.getResourceAsStream("/.env.properties")){
             final var properties = new Properties();
             properties.load(stream);
             System.setProperties(properties);
