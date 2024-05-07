@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import org.example.inventoryclient.StageManager;
 
+
 public class BaseController {
 
     @FXML
