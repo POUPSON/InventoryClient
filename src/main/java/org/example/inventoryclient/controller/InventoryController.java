@@ -29,7 +29,7 @@ public class InventoryController {
     @FXML
     private void initialize() {
         collproduct.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        collquantity.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getQuantityInStock()).asObject());
+        collquantity.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getQuantity()).asObject());
         collvalue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValueInStock()).asObject());
 
         new Thread(() -> {

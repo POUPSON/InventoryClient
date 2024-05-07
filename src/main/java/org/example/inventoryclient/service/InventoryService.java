@@ -12,10 +12,13 @@ import java.net.http.HttpResponse;
 
 public class InventoryService {
     public static PagedResponse<Item> getItems(int limit) {
+
+
         try {
             final var httpClient = HttpClient.newHttpClient();
             final var apiOrigin = System.getProperty("api.origin");
             final var request = HttpRequest.newBuilder(URI.create(apiOrigin + "/api/inventory/products?size=" + limit))
+                    .GET()
                     .build();
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             var json = response.body();
@@ -26,6 +29,8 @@ public class InventoryService {
             throw new RuntimeException(t);
         }
     }
+
+
 
     public static PagedResponse<Item> getItems() {
         return getItems(50);
