@@ -21,4 +21,8 @@ public class PagedResponse<T> {
     private Pageable.Sort sort;
     private Boolean first;
     private Boolean empty;
+
+    public List<T> getItems() {
+        return content;
+    }
 }

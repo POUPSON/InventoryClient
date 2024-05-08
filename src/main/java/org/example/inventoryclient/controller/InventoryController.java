@@ -27,7 +27,7 @@ public class InventoryController {
 
     @FXML
     private TableColumn<Item, Integer> collvalue;
-    private final ObservableList<Item> items= FXCollections.observableArrayList();
+    private final ObservableList<Item> items = FXCollections.observableArrayList();
     @FXML
     private void initialize() {
         component.setItems(items);
@@ -37,8 +37,11 @@ public class InventoryController {
 
         new Thread(() -> {
             try {
-                final var result = InventoryService.getItems();
-                System.out.println(result);
+                final var response = InventoryService.getItems();
+                final var result = response.getItems();
+                items.addAll( result);
+               System.out.println(result);
+
             } catch (Throwable e) {
                 e.printStackTrace(System.err);
             }
