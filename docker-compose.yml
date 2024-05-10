@@ -1,8 +1,8 @@
-version '3'
+version: '3'
 
 services:
   api:
-    image: conrad302/inventory-api:master
+    image: conrad302/inventory-api:latest
     ports:
       - '5000:8080'
     container_name: inventory-api

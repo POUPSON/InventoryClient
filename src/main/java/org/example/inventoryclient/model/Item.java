@@ -8,6 +8,6 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class Item {
-    private Integer quantityInStock, valueInStock  ;
-    private String name;
+    private Integer quantity, valueInStock  ;
+    private String Name, color, description;
 }

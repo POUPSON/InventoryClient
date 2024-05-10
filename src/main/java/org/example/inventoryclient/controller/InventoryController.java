@@ -2,6 +2,8 @@ package org.example.inventoryclient.controller;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
@@ -12,7 +14,7 @@ import org.example.inventoryclient.service.InventoryService;
 public class InventoryController {
 
     @FXML
-    private TableView<Item> Component;
+    private TableView<Item> component;
 
     @FXML
     private TableColumn<Item, Node> collactions;
@@ -25,17 +27,21 @@ public class InventoryController {
 
     @FXML
     private TableColumn<Item, Integer> collvalue;
-
+    private final ObservableList<Item> items = FXCollections.observableArrayList();
     @FXML
     private void initialize() {
+        component.setItems(items);
         collproduct.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        collquantity.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getQuantityInStock()).asObject());
+        collquantity.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getQuantity()).asObject());
         collvalue.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getValueInStock()).asObject());
 
         new Thread(() -> {
             try {
-                final var result = InventoryService.getItems();
-                System.out.println(result);
+                final var response = InventoryService.getItems();
+                final var result = response.getItems();
+                items.addAll( result);
+               System.out.println(result);
+
             } catch (Throwable e) {
                 e.printStackTrace(System.err);
             }

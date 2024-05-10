@@ -1,10 +1,12 @@
 package org.example.inventoryclient.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import org.example.inventoryclient.StageManager;
+
 
 public class BaseController {
 
@@ -20,6 +22,11 @@ public class BaseController {
     @FXML
     private Button btnSales;
 
+    private static void handle(ActionEvent event) {
+        StageManager.navigate("sales.fxml");
+
+}
+
     //Asigner a chaque fxid de chaque bouton la fonction navigate ayant en parametre le
     // fichier.xml kils pourront ouvrir
     @FXML
@@ -28,9 +35,13 @@ public class BaseController {
             StageManager.navigate("inventory.fxml");
         });
         btnSupplies.setOnAction(event -> {
-            StageManager.navigate("supply.fxml");
-    });
-
+            StageManager.navigate("supllies.fxml");
+        });
+        btnSales.setOnAction(event -> {
+            StageManager.navigate("Sales.fxml");
+        });
+//permet que lorsque on lance lappli  cest la page inventory.fxml qui s'afiiche par defaut
+        btnInventory.fire();
     }
 
 
