@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<TableView xmlns:fx="http://javafx.com/fxml/1" fx:id="component" prefHeight="206.0" prefWidth="600.0"
-           xmlns="http://javafx.com/javafx/17"
-           fx:controller="org.example.inventoryclient.controller.InventoryController">
-    <columns>
-        <TableColumn fx:id="collproduct" minWidth="15.0" prefWidth="131.0" text="Product Name"/>
-        <TableColumn fx:id="collquantity" prefWidth="145.0" text="Quantity In Stock"/>
-        <TableColumn fx:id="collvalue" minWidth="0.0" prefWidth="131.0" text="Value In Stock "/>
-        <TableColumn fx:id="collactions" prefWidth="192.0" text="Actions "/>
-    </columns>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
-
-</TableView>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.inventoryclient.controller.InventoryController">
+   <center>
+      <TableView fx:id="component">
+          <columns>
+              <TableColumn fx:id="collproduct" minWidth="15.0" prefWidth="171.0" text="Product Name" />
+              <TableColumn fx:id="collquantity" prefWidth="172.0" text="Quantity In Stock" />
+              <TableColumn fx:id="collvalue" minWidth="0.0" prefWidth="169.0" text="Value In Stock " />
+              <TableColumn fx:id="collactions" prefWidth="216.0" text="Actions " />
+          </columns>
+      
+      
+      </TableView>
+   </center>
+   <top>
+      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="24.0" prefWidth="392.0" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnRegister" mnemonicParsing="false" prefHeight="24.0" prefWidth="186.0" text="Register" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
